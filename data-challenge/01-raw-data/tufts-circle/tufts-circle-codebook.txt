@@ -1,0 +1,69 @@
+# Description of data for Tufts Center for Information and Research on
+Civic Learning and Engagement (CIRCLE)
+
+######## Source: ########
+# Youth Voting and Civil Engagement in America
+# https://circle.tufts.edu/explore-our-data/youth-voting-and-civic-engagement-america
+
+### What's included in dataset: ###
+# Youth voter turnout and vote choice in 2016 and 2018 elections in all states
+# Rankings of states/districts where young people may have influenced
+election results (Youth Electoral Significance Index:
+https://circle.tufts.edu/explore-our-data/youth-electoral-significance-index)
+# State-level data on 10 indicators of youth civic Engagement
+# county-level data on youth demographics (income, education, residential
+segregation, etc.)
+
+##### Voting Variables: #####
+# Voter turnout (2016, 2018): estimated percentage of young citizens, age 18-29,
+who cast a ballot in the election
+
+# Voter registration rate (2016, 2018): estimated percentage of young citizens,
+age 18-29, registered to vote in the elections
+
+# Votes cast (2016, 2018): estimated number of votes in the election case by
+young people, age 18-29
+
+# Vote choice, President (2016)
+
+# Vote choice, Senate (2016, 2018)
+
+# Vote choice, Governor (2016, 2018)
+
+###### Youth Civic Engagement Variables (survey responses): #####
+# Belong to a group
+
+# Make consumer choices for political reasons
+
+# Work with neighbors to do something positive for community
+
+# Do favors for a neighbor
+
+# Discuss political/social issues with neighbors
+
+# Discuss political/social issues with friends or family
+
+# Talk with people of different backgrounds
+
+# Share views about news/politics on social media
+
+# Contact or visit public official to express opinion
+
+##### Conditions that shape youth engagement variables: #####
+# Population (youth citizen population, youth/adult ratio)
+
+# Education (enrolled in college, college experience, no HS diploma)
+
+# Quality of Life (median household income, income disparity, child poverty,
+violent crime rate, internet access)
+
+# Civic culture (nonprofits per capita, nonprofits serving youth, rate of
+associations, youth residential stability)
+
+# Political landscape (partisan lean, winning pres candidate, last President
+election close, facilitative election laws, statute on HS voter registration)
+## facilitative election law: Score from 1-10 that measures how strongly a
+state has implemented laws that facilitate registration and voting, such as
+pre-registration and automatic registration
+## statute on voter registration: Is there a state statute focused on
+facilitating the voter registration of high school students?
