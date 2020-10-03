@@ -78,3 +78,27 @@ boxplot(no.2018$turnout~no.2018$party, data = no.2018,
         col = c("skyblue", "black", "tomato"))
 
 ```
+
+
+## Boxplot Only Based on Prop-17 Stance
+```{r}
+yes.all = filter(voters.data, primary_17 == "Y",
+                  !is.na(turnout))
+no.all = filter(voters.data, primary_17 == "N",
+                  !is.na(turnout))
+
+boxplot(yes.all$turnout~yes.all$year, data = yes.all, 
+        ylim = c(0.10,0.60), boxwex = 0.5,
+        main = "Youth Turnout Where 17 Year Olds are Eligible",
+        xlab="Year", 
+        ylab = "Proportion of Youth Voter Turnout",
+        col = c("green", "gold"))
+
+boxplot(no.all$turnout~no.all$year, data = no.all, 
+        ylim = c(0.10,0.60), boxwex = 0.5,
+        main = "Youth Turnout Where 17 Year Olds aren't Eligible",
+        xlab="Year", 
+        ylab = "Proportion of Youth Voter Turnout",
+        col = c("green", "gold"))
+
+```
