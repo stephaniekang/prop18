@@ -1,0 +1,80 @@
+# This file is meant to create a boxplot based on using information from clean voter data.  We'll be looking at the variables "year," "party," and "turnout". Separate boxplots will be created based on  the year and whether 17 year olds are eligible to vote in that state's election.
+
+## Opening Files and Importing Tidyverse/Dplyr
+
+```{r}
+library(tidyverse)
+library(dplyr)
+voters.data = read.csv("02-clean-data/clean_youth_vote_200928.csv")
+```
+
+## Segmenting data that will be used to create boxplots
+
+```{r}
+# Organized based on year and stance of voting at 17
+# From there, we only keep the variables of interest
+# Need to remove "NA" turnout since those states can't be used.
+        # Alaska, DC, Hawaii, Mississippi, New Hampshire,
+        # North Dakota, Wisconsin, Wyoming (Both 2016 and 2018) 
+
+# 2016 Presidential Election
+yes.2016 = filter(voters.data, year == 2016, primary_17 == "Y",
+                  !is.na(turnout))
+yes.2016 = select(yes.2016, state_code, turnout, party)
+
+no.2016 = filter(voters.data, year == 2016, primary_17 == "N",
+                 !is.na(turnout))
+no.2016 = select(no.2016, state_code, turnout, party)
+
+# 2018 Primary
+yes.2018 = filter(voters.data, year == 2018, primary_17 == "Y",
+                  !is.na(turnout))
+yes.2018 = select(yes.2018, state_code, turnout, party)
+
+no.2018 = filter(voters.data, year == 2018, primary_17 == "N",
+                 !is.na(turnout))
+no.2018 = select(no.2018, state_code, turnout, party)
+```
+
+
+## Boxplot for 2016
+
+```{r}
+boxplot(yes.2016$turnout~yes.2016$party, data = yes.2016, 
+        ylim = c(0.20,0.60), boxwex = 0.5,
+        main = "Turnout in 2016 Where 17 Year Olds are Eligible",
+        xlab= "Political Party of Partisan Lean", 
+        ylab = "Proportion of Eligible Youth Voters who Voted",
+        col = c("skyblue","tomato"))
+
+#Add a Third Color due to "E" Affiliation
+boxplot(no.2016$turnout~no.2016$party, data = no.2016, 
+        ylim = c(0.20,0.60), boxwex = 0.5,
+        main = "Turnout in 2016 Where 17 Year Olds aren't Eligible",
+        xlab="Political Party of Partisan Lean", 
+        ylab = "Proportion of Eligible Youth Voters who Voted",
+        col = c("skyblue", "black", "tomato"))
+```
+
+
+## Boxplot for 2018
+
+```{r}
+# Scaling for y-axis is different since youth turnout was lower 
+# (because 2018 was a midterm election)
+
+boxplot(yes.2018$turnout~yes.2018$party, data = yes.2018, 
+        ylim = c(0.10,0.50), boxwex = 0.5,
+        main = "Turnout in 2018 Where 17 Year Olds are Eligible",
+        xlab="Political Party of Partisan Lean", 
+        ylab = "Proportion of Eligible Youth Voters who Voted",
+        col = c("skyblue","tomato"))
+
+boxplot(no.2018$turnout~no.2018$party, data = no.2018, 
+        ylim = c(0.10,0.50), boxwex = 0.5,
+        main = "Turnout in 2018 Where 17 Year Olds aren't Eligible",
+        xlab="Political Party of Partisan Lean", 
+        ylab = "Proportion of Eligible Youth Voters who Voted",
+        col = c("skyblue", "black", "tomato"))
+
+```
