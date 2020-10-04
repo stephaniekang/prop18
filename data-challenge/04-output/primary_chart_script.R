@@ -1,3 +1,4 @@
+
 ## Clear environment
 rm(list=ls(all=TRUE))
 
@@ -18,8 +19,8 @@ plot <- ggplot(data=youth_vote) +
   ylab("Turnout Rate") +
   geom_smooth(mapping=aes(x=register, y=turnout)) +
   geom_point(mapping=aes(x=register, y=turnout, 
-                         color = ifelse(state_code %in% states, "17-Year-Old Primary Voting", "None"), text=paste('State: ', state_code), size=5)) +
-  scale_color_manual(name="State lets 17 year olds vote \n in primaries?",values=c("green","black"),labels=c("Yes","No"))
+                         color = ifelse(state_code %in% states, "States with 17-Year-Old \nPrimary Voting", "States Without"), text=paste('State: ', state_code), size=5)) +
+  scale_color_manual(name="Registration-Turnout Plot",values=c("green","black"),labels=c("Yes","No"))
 
 ggplotly(plot, tooltip=c("text"))
 
