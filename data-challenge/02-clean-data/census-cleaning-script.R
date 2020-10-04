@@ -169,7 +169,7 @@ census_2012[cols.num] <- sapply(census_2012[cols.num], as.numeric)
 
 sapply(census_2012, class) # check
 
-census_2012 <- census_2016[-which(census_2012$age == ""), ]
+census_2012 <- census_2012[-which(census_2012$age == ""), ]
 
 census_2012$age <- as.factor(census_2012$age)
 
