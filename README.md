@@ -1,4 +1,5 @@
 # CA Proposition 18: Youth Voting
+#### Last updated: 10/4/2020
 
 ## About
 This project aims to use publicly sourced data to examine how passing CA Proposition 18, or the Primary Voting for 17-Year-Olds Amendment, can impact youth voting behavior, including voter registration and turnout. The youth population is an increasingly important group of eligible voters and encouraging them to vote can have a significant effect on election outcomes. We examine how Prop 18 may influence youth voting by making comparisons between states that have passed a similar legislation (i.e. allow 17-year-olds to vote in primaries) and those that have not (such as California).
@@ -8,7 +9,7 @@ This project aims to use publicly sourced data to examine how passing CA Proposi
 | | Contributors | Affiliation | Field |
 | :---- | :---- |:---- | :---- |
 | 👩‍💻 | Carolyn Choi | USC | Sociology |
-| 🧑‍💻 | Grant Hendersen | UC Davis | Statistics |
+| 🧑‍💻 | Grant Henderson | UC Davis | Statistics |
 | 👩‍💻 | Stephanie Kang* | UC Davis | Political Science | 
 | 🧑‍💻 | Nicholas Kwak | UC Davis | Statistics |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
@@ -54,7 +55,7 @@ The repository is composed of five main folders inside the master folder, `data-
 
 1. [01-raw-data](https://github.com/stephaniekang/prop18/tree/master/data-challenge/01-raw-data): contains the raw data collected from Tufts CIRCLE and the US Census Bureau
 2. [02-clean-data](https://github.com/stephaniekang/prop18/tree/master/data-challenge/02-clean-data): includes the R scripts for cleaning the raw data and the clean data files in .csv format
-3. [03-visual](https://github.com/stephaniekang/prop18/tree/master/data-challenge/03-visual): contains the R scripts to create the data visuals; R markdown html files can be used to see code and output without running R
+3. [03-visual](https://github.com/stephaniekang/prop18/tree/master/data-challenge/03-visual): contains the R scripts to create the data visuals; R markdown `html` files can be used to see code and output without running R
 4. [04-output](https://github.com/stephaniekang/prop18/tree/master/data-challenge/04-output): contains the data visualization files as image files (snapshots of interactive maps and plots)
 5. [05-presentation](https://github.com/stephaniekang/prop18/tree/master/data-challenge/05-presentation): includes the presentation for the virtual showcase and all materials (images, etc.) used to make the presentation
 
