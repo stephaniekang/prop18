@@ -1,0 +1,152 @@
+---
+title: "Create choropleth with youth vote data"
+author: "Team Voteen"
+date: "10/3/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Initial set-up
+```{r, message=FALSE}
+## Clear environment
+rm(list=ls(all=TRUE))
+
+## Set working directory
+setwd("~/Documents/GitHub/prop18/data-challenge/02-clean-data")
+
+## Load packages
+library(tidyverse)
+library(leaflet)
+library(tigris)
+
+## Import data
+youth_vote <- read.csv("clean_youth_vote_200928.csv")
+```
+
+## Make shape files and polygons using `tigris` package (includes pre-loaded map of U.S.) and `leaflet`
+```{r, message = FALSE, echo = FALSE}
+# Import polygon from shape file
+states <- states(cb = T)
+
+# Tiles for US states
+states %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addPolygons(popup = ~NAME)
+```
+
+## Subset data by election year
+```{r}
+## Split dataset by year
+youth_vote_16 <- filter(youth_vote, year == 2016)
+
+youth_vote_18 <- filter(youth_vote, year == 2018)
+```
+
+## Merge geospatial data (with coordinates) with youth vote data
+```{r}
+youth_vote_16 <- geo_join(states, youth_vote_16, "STUSPS", "state_code")
+
+youth_vote_18 <- geo_join(states, youth_vote_18, "STUSPS", "state_code")
+```
+
+## Convert primary voting variable into factor variable
+```{r}
+youth_vote_16$primary_17 <- ifelse(youth_vote_16$primary_17 %in% "Y", "Yes", "No")
+youth_vote_16$primary_17 <- as.factor(youth_vote_16$primary_17)
+
+youth_vote_18$primary_17 <- ifelse(youth_vote_18$primary_17 %in% "Y", "Yes", "No")
+youth_vote_18$primary_17 <- as.factor(youth_vote_18$primary_17)
+```
+
+## Define color palettes for different variables
+```{r}
+pal_turnout <- colorFactor("Purples", domain = youth_vote_16$primary_17)
+pal_register <- colorFactor("Oranges", domain = youth_vote_18$primary_17)
+```
+
+## Format pop-up text
+```{r}
+popup_turnout_16 <- paste0(youth_vote_16$state, "<br>Youth Turnout (2016): ", 
+                        as.character(youth_vote_16$turnout * 100), "%")
+popup_turnout_18 <- paste0(youth_vote_18$state, "<br>Youth Turnout (2018): ", 
+                           as.character(youth_vote_18$turnout * 100), "%")
+popup_register_16 <- paste0(youth_vote_16$state, "<br>Youth Registration (2016): ", 
+                           as.character(youth_vote_16$register * 100), "%")
+popup_register_18 <- paste0(youth_vote_18$state, "<br>Youth Registration (2018): ", 
+                           as.character(youth_vote_18$register * 100), "%")
+```
+
+## 17-year-old Primary voting and youth voter turnout
+```{r}
+# Generate map for 2016
+leaflet() %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  setView(-98.483330, 38.712046, zoom = 4) %>% 
+  addPolygons(data = youth_vote_16, 
+              fillColor = ~pal_turnout(youth_vote_16$primary_17), 
+              fillOpacity = 0.7, 
+              weight = 0.2, 
+              smoothFactor = 0.2,
+              popup = ~popup_turnout_16) %>%
+  addLegend(pal = pal_turnout,
+            values = youth_vote_16$primary_17,
+            position = "bottomright", 
+            title = "States with Primary Voting<br>for 17 year-olds")
+```
+
+```{r}
+# Generate map for 2018
+leaflet() %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  setView(-98.483330, 38.712046, zoom = 4) %>% 
+  addPolygons(data = youth_vote_18, 
+              fillColor = ~pal_turnout(youth_vote_18$primary_17), 
+              fillOpacity = 0.7, 
+              weight = 0.2, 
+              smoothFactor = 0.2,
+              popup = ~popup_turnout_18) %>%
+  addLegend(pal = pal_turnout,
+            values = youth_vote_18$primary_17,
+            position = "bottomright", 
+            title = "States with Primary Voting<br>for 17 year-olds")
+```
+
+## 17-year-old Primary voting and youth voter registration
+```{r}
+# Generate map for 2016
+leaflet() %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  setView(-98.483330, 38.712046, zoom = 4) %>% 
+  addPolygons(data = youth_vote_16, 
+              fillColor = ~pal_register(youth_vote_16$primary_17), 
+              fillOpacity = 0.7, 
+              weight = 0.2, 
+              smoothFactor = 0.2,
+              popup = ~popup_register_16) %>%
+  addLegend(pal = pal_register,
+            values = youth_vote_16$primary_17,
+            position = "bottomright", 
+            title = "States with Primary Voting<br>for 17 year-olds")
+```
+
+```{r}
+# Generate map for 2018
+leaflet() %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  setView(-98.483330, 38.712046, zoom = 4) %>% 
+  addPolygons(data = youth_vote_18, 
+              fillColor = ~pal_register(youth_vote_18$primary_17), 
+              fillOpacity = 0.7, 
+              weight = 0.2, 
+              smoothFactor = 0.2,
+              popup = ~popup_register_18) %>%
+  addLegend(pal = pal_register,
+            values = youth_vote_18$primary_17,
+            position = "bottomright", 
+            title = "States with Primary Voting<br>for 17 year-olds")
+```
+

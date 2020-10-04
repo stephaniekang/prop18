@@ -6,7 +6,6 @@ setwd("~/Desktop/data-challenge/01-raw-data")
 
 ## Load packages
 library(tidyverse)
-library(esquisse)
 
 ## Import data into workspace
 turnout_16 <- read.csv("tufts-circle/voterturnout_16.csv", stringsAsFactors = FALSE)
@@ -33,6 +32,17 @@ youth_pop_18 <- read.csv("tufts-circle/youth_pop_18.csv", stringsAsFactors = FAL
 
 partisan_16 <- read.csv("tufts-circle/partisan_lean_16.csv", stringsAsFactors = FALSE)
 partisan_18 <- read.csv("tufts-circle/partisan_lean_18.csv", stringsAsFactors = FALSE)
+
+## Clean each variable for each election year data
+
+#The data from the Tufts CIRCLE was provided through an interactive data tool that 
+#only allowed users to download one variable as a csv file for each year (for all states). 
+#We cleaned each file, added a year variable, combined common variables with rbind(), 
+#and merged the data by state name, year, and variable of interest. 
+
+#The final dataset is at the state-year level (for 2016 and 2018).
+
+#We show how we cleaned one file and repeat the process for all files.
 
 ## Clean data for youth voter turnout in 2016
 turnout_16 <- turnout_16 %>%
