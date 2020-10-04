@@ -53,9 +53,9 @@ For this project, we collected data by downloading Excel files provided by the d
 The repository is composed of five main folders inside the master folder, `data-challenge`:
 
 1. [01-raw-data](https://github.com/stephaniekang/prop18/tree/master/data-challenge/01-raw-data): contains the raw data collected from Tufts CIRCLE and the US Census Bureau
-2. [02-clean-data](https://github.com/stephaniekang/prop18/tree/master/data-challenge/02-clean-data): includes the R script for cleaning the raw data and the clean data file in .csv format
-3. [03-visual](https://github.com/stephaniekang/prop18/tree/master/data-challenge/03-visual): contains the R scripts to create the data visuals
-4. [04-output](https://github.com/stephaniekang/prop18/tree/master/data-challenge/04-output): contains the actual data visualization files (HTML)
+2. [02-clean-data](https://github.com/stephaniekang/prop18/tree/master/data-challenge/02-clean-data): includes the R scripts for cleaning the raw data and the clean data file in .csv format
+3. [03-visual](https://github.com/stephaniekang/prop18/tree/master/data-challenge/03-visual): contains the R scripts to create the data visuals; R markdown html files can be used to see code and output without running R
+4. [04-output](https://github.com/stephaniekang/prop18/tree/master/data-challenge/04-output): contains the actual data visualization files as image files (snapshots of interactive maps and plots)
 5. [05-presentation](https://github.com/stephaniekang/prop18/tree/master/data-challenge/05-presentation): includes the presentation for the virtual showcase and all materials (images, etc.) used to make the presentation
 
 **Note:** Users can download the master folder to their local drive and run the `R` scripts and only need to change the working directory file path, if necessary. The current default is set to Desktop.
